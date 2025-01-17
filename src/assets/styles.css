@@ -1,0 +1,137 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    text-align: center;
+    margin-top: 60px;
+}
+
+header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+}
+
+.input-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-field {
+    width: 250px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #42b983;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.input-button:hover {
+    background-color: #369870;
+}
+
+.input-error {
+    border-color: #e74c3c;
+}
+
+.link {
+    display: block;
+    color: #42b983;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.password-block {
+    position: relative;
+    width: 250px;
+}
+
+.password-input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #42b983;
+    padding: 0;
+}
+
+.password-toggle:focus {
+    outline: none;
+}
+
+.alert-message {
+    background-color: #ffcccc;
+    color: #cc0000;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
+/* Темная тема */
+body.dark {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+}
+
+body.dark .input-field,
+body.dark .password-input {
+    background-color: #34495e;
+    border-color: #1abc9c;
+    color: #ecf0f1;
+}
+
+body.dark .password-toggle {
+    color: #1abc9c;
+}
+
+body.dark .input-button {
+    background-color: #1abc9c;
+}
+
+body.dark .input-button:hover {
+    background-color: #16a085;
+}
+
+body.dark .link {
+    color: #1abc9c;
+}
+
+body.dark .alert-message {
+    background-color: #e74c3c;
+    color: #ecf0f1;
+}
