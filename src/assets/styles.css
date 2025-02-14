@@ -12,13 +12,6 @@ body {
     margin-top: 60px;
 }
 
-header {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    padding: 10px;
-}
-
 .input-form {
     display: flex;
     flex-direction: column;
@@ -51,55 +44,6 @@ header {
 
 .input-error {
     border-color: #e74c3c;
-}
-
-.link {
-    display: block;
-    color: #42b983;
-    text-decoration: none;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.link:hover {
-    text-decoration: underline;
-}
-
-.password-block {
-    position: relative;
-    width: 250px;
-}
-
-.password-input {
-    width: 100%;
-    padding-right: 40px;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: #42b983;
-    padding: 0;
-}
-
-.password-toggle:focus {
-    outline: none;
-}
-
-.alert-message {
-    background-color: #ffcccc;
-    color: #cc0000;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    text-align: center;
-    width: 100%;
 }
 
 /* Темная тема */

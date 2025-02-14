@@ -3,8 +3,7 @@
     <h1>{{ t('welcome') }}</h1>
     <h2>{{ t('register') }}</h2>
     <p>{{ t('fill_registration') }}</p>
-    <AlertMessage :message="alertMessage" />
-    <form @submit.prevent="register" class="input-form">
+    <form @submit.prevent="register" class="input-form" novalidate>
       <input
         type="text"
         v-model="name"
@@ -37,16 +36,16 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
-import AlertMessage from '../components/AlertMessage.vue';
 
 const router = useRouter();
+const store = useStore();
 const { t } = useI18n();
 const name = ref('');
 const email = ref('');
 const password = ref('');
 const confirmPassword = ref('');
-const alertMessage = ref('');
 const errors = ref({
   name: false,
   email: false,
@@ -82,20 +81,30 @@ function register() {
   };
 
   if (errors.value.name) {
-    alertMessage.value = t('required_field');
+    store.dispatch('triggerNotification', {
+      message: t('required_field'),
+      type: 'error'
+    });
   } else if (errors.value.email) {
-    alertMessage.value = t('invalid_email');
+    store.dispatch('triggerNotification',  {
+      message: t('invalid_email'),
+      type: 'error'
+    });
   } else if (errors.value.password) {
-    alertMessage.value = t('invalid_password');
+    store.dispatch('triggerNotification',  {
+      message: t('invalid_password'),
+      type: 'error'
+    });
   } else if (errors.value.confirmPassword) {
-    alertMessage.value = t('password_mismatch');
+    store.dispatch('triggerNotification', {
+      message: t('password_mismatch'),
+      type: 'error'
+    });
   } else {
+    store.dispatch('triggerNotification', {
+      message: t('register_successful')
+    });
     router.push('/');
-    return;
   }
-  // @TODO Поискать как можно рефакторить исчезновение уведомлений
-  setTimeout(() => {
-    alertMessage.value = '';
-  }, 3000);
 }
 </script>

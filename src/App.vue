@@ -1,5 +1,6 @@
 <template>
   <header>
+    <Notifications />
     <select v-model="$i18n.locale">
       <option value="ru">Русский</option>
       <option value="en">English</option>
@@ -13,6 +14,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import Notifications from "@/components/Notifications.vue";
 
 const currentTheme = ref('Light');
 
@@ -21,3 +23,12 @@ function toggleTheme() {
   document.body.className = currentTheme.value.toLowerCase();
 }
 </script>
+
+<style scoped>
+  header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px;
+  }
+</style>

@@ -3,8 +3,7 @@
     <h1>{{ t('welcome') }}</h1>
     <h2>{{ t('login') }}</h2>
     <p>{{ t('enter_credentials') }}</p>
-    <AlertMessage :message="alertMessage" />
-    <form @submit.prevent="login" class="input-form">
+    <form @submit.prevent="login" class="input-form" novalidate>
       <input type="email" v-model="email" :placeholder="t('email')" class="input-field" />
       <router-link to="/reset-password" class="link">{{ t('forgot_password') }}</router-link>
       <div class="password-block">
@@ -22,15 +21,15 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
 import { useI18n } from 'vue-i18n';
-import AlertMessage from '../components/AlertMessage.vue';
 
 const router = useRouter();
+const store = useStore();
 const { t } = useI18n();
 const email = ref('');
 const password = ref('');
 const showPassword = ref(false);
-const alertMessage = ref('');
 
 function togglePasswordVisibility() {
   showPassword.value = !showPassword.value;
@@ -40,11 +39,51 @@ function login() {
   if (email.value && password.value) {
     router.push('/success');
   } else {
-    alertMessage.value = t('login_error');
-    // @TODO Поискать как можно рефакторить исчезновение уведомлений
-    setTimeout(() => {
-      alertMessage.value = '';
-    }, 3000);
+    store.dispatch('triggerNotification', {
+      message: t('login_error'),
+      type: 'error'
+    });
   }
 }
 </script>
+
+<style scoped>
+  .link {
+    display: block;
+    color: #42b983;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .link:hover {
+    text-decoration: underline;
+  }
+
+  .password-block {
+    position: relative;
+    width: 250px;
+  }
+
+  .password-input {
+    width: 100%;
+    padding-right: 40px;
+  }
+
+  .password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #42b983;
+    padding: 0;
+  }
+
+  .password-toggle:focus {
+    outline: none;
+  }
+</style>
